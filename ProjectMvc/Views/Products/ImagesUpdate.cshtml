@@ -1,0 +1,63 @@
+﻿@model ProjectMvc.viewModel.UpdateProductImage
+@{
+    ViewBag.Title = "UpdateProductImage";
+   
+}
+
+<h2>ImagesUpdate</h2>
+
+<table>
+
+    @foreach (var item in Model.ImagesProductList)
+    {
+
+        <tr>
+            <td><img src=@item.ImagesUrl class="img-responsive" /></td>
+            <td><a href="~/Products/DeleteImage/@item.ID" class="btn btn-danger">X</a></td>
+        </tr>
+    }
+</table>
+
+<!--upload multiple Images-->
+@using (Html.BeginForm("UpdateFiles", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    if (@ViewData["ProductID"] != null)
+    {
+        <input type="hidden" name="ProductId" value=@ViewData["ProductID"]>
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.FileModelObj.files, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.FileModelObj.files, "", new { @type = "file", @multiple = "multiple" })
+                    @Html.ValidationMessageFor(model => model.FileModelObj.files, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Upload" class="btn btn-primary" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10 text-success">
+                    @ViewBag.UploadStatus
+                </div>
+            </div>
+
+        </div>
+    }
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script> 
+
+
+
+
+

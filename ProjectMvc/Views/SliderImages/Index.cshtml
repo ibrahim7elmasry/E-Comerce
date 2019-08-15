@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ProjectMvc.Models.SliderImage>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.sliderTile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sliderimage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.sliderTile)
+        </td>
+        <td>
+           
+            <img class="img-responsive" style="width:100px; height:100px;" src="@item.sliderimage" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.sliderId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.sliderId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.sliderId })
+        </td>
+    </tr>
+}
+
+</table>

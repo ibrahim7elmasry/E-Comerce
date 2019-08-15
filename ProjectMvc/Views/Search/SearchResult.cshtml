@@ -1,0 +1,32 @@
+﻿
+@model List<ProjectMvc.Models.Product>
+
+@{
+    ViewBag.Title = "SearchResult";
+}
+
+<h2>Search Result</h2>
+
+@{
+    int i = 0;
+}
+@foreach (var item in Model)
+{
+
+    i++;
+       <!-- shop -->
+    <div class="col-md-4 col-xs-6">
+        <div class="shop">
+            <div class="shop-img">
+                <img src=
+                     @{ foreach (var x in item.IamgesList) { @x.ImagesUrl  } }  height="350" width="350">
+            </div>
+            <div class="shop-body">
+                <h3>@item.productName<br>@item.productName</h3>
+                <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+            <!-- /shop -->
+
+    }

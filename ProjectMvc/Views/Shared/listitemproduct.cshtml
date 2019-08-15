@@ -1,0 +1,32 @@
+﻿
+
+@model ProjectMvc.viewModel.CatProductWithImageSliderViewModel
+@{ 
+    int j = 0;
+}
+
+
+@foreach (var item1 in Model.ProductWithImagList)
+{
+    j++;
+    if (j < 3)
+    {
+                            <!-- product widget -->
+    <div class="product-widget">
+        <div class="product-img">
+            <img src=@item1.ImagesUrl alt="">
+        </div>
+        <div class="product-body">
+            <p class="product-category">Category</p>
+            <h3 class="product-name"><a href="@Url.Action("Index/" + @item1.ProductId, "showproductitem")">@item1.Description</a></h3>
+            <h4 class="product-price">@item1.Price <del class="product-old-price">@item1.Price</del></h4>
+        </div>
+    </div>
+
+                        <!-- /product widget -->
+        }
+
+    }
+
+
+@*@Url.Action("", "")*@

@@ -1,0 +1,69 @@
+﻿@using ProjectMvc.Models;
+
+@{
+    double totalprice = 0;
+    int count = 0;
+    int count1 = 0;
+}
+
+@if (Session["cart"] != null)
+{
+    foreach (item it1 in (List<item>)Session["cart"])
+    {
+        count++;
+    }
+}
+@if (Model != null && Session["cart"] != null)
+
+{
+    <div class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+            <i class="fa fa-shopping-cart"></i>
+            <span>Your Cart</span>
+            <div class="qty">@count</div>
+        </a>
+        <div class="cart-dropdown">
+
+
+            <div class="cart-list">
+
+                @foreach (item it1 in (List<item>)Session["cart"])
+                {
+                    count1++;
+                    <div class="product-widget">
+                        <div class="product-img">
+                            <img src=@it1.ProductItem.IamgesList.ElementAt(0).ImagesUrl alt="">
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-name"><a href="#">@it1.ProductItem.productName</a></h3>
+                            <h4 class="product-price"><span class="qty">@it1.ProductItem.Quantity</span>@it1.ProductItem.Price</h4>
+                        </div>
+                        <button class="delete"><i class="fa fa-close"><a href="@Url.Action("RemoveCart", "Products", new { id = it1.ProductItem.ProductId })"></a></i></button>
+                    </div>
+
+
+
+                    totalprice = totalprice + @it1.ProductItem.Price;
+                }
+            </div>
+
+
+            <!-- /Cart -->
+
+
+
+
+            <div class="cart-summary">
+                <small>@count Item(s) selected</small>s
+                <h5>SUBTOTAL:@totalprice</h5>
+            </div>s
+            <div class="cart-btns">
+                <a href=@Url.Action("ViewCart","Home") class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> view cart</a>
+
+                <a href=@Url.Action("Checkout","Home")>Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+}

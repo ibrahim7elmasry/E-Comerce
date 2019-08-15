@@ -1,0 +1,24 @@
+﻿<div id="responsive-nav">
+    <!-- NAV -->
+    <ul class="main-nav nav navbar-nav">
+        @if (Request.IsAuthenticated == true)//if is authenticated
+        {
+
+         <li>@Html.ActionLink("Home", "Index", "Home")</li>
+         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+
+            if (User.IsInRole("Admin"))
+            {
+                <li>@Html.ActionLink("categories", "Index", "categories")</li>
+                <li>@Html.ActionLink("Products", "Index", "Products")</li>
+                <li>@Html.ActionLink("Slider Images", "Index", "SliderImages")</li>
+            }
+        }
+        else
+        {
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        }
+    </ul>
+    <!-- /NAV -->
+</div>

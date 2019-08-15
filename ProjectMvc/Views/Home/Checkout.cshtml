@@ -1,0 +1,134 @@
+﻿@using ProjectMvc.Models;
+
+@{
+    Double priceall = 0;
+}
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Order Details -->
+            <div class="col-md-6 col-md-offset-3  order-details  ">
+                <div class="section-title text-center">
+                    <h3 class="title">Your Order</h3>
+                </div>
+                <div class="order-summary">
+                    <div class="order-col">
+                        <div><strong>PRODUCT</strong></div>
+                        <div><strong>TOTAL</strong></div>
+                    </div>
+                    <div class="order-products">
+                        @foreach (item item in (List<item>)Session["cart"])
+                        {
+
+                            <div class="order-col">
+                                <div> @item.Quantity x @item.ProductItem.productName</div>
+                                <div> @item.ProductItem.Price EGP</div>
+                            </div>
+
+
+                            priceall += item.ProductItem.Price * item.Quantity;
+
+
+                        }
+                        @*<div class="order-col">
+
+                                <div>2x Product Name Goes Here</div>
+                                <div>$980.00</div>
+                            </div>*@
+                    </div>
+                    <div class="order-col">
+                        <div><b> Shiping </b></div>
+                        <div><strong>FREE</strong></div>
+                    </div>
+
+                    <div class="order-col">
+                        <div><strong>TOTAL</strong></div>
+                        <div><strong class="order-total"> @priceall EGP</strong></div>
+                    </div>
+                </div>
+                <div class="payment-method">
+                    <div class="input-radio">
+                        <input type="radio" name="payment" id="payment-1">
+                        <label for="payment-1">
+                            <span></span>
+                            Direct Bank Transfer
+                        </label>
+                        &nbsp;
+                        <div class="caption">
+                            @*<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>*@
+                        </div>
+                    </div>
+                    <div class="input-radio">
+                        <input type="radio" name="payment" id="payment-2">
+                        <label for="payment-2">
+                            <span></span>
+                            Cash Payment
+                        </label>
+                        <div class="caption">
+                            @*// <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>*@
+                        </div>
+                    </div>
+                    @*<div class="input-radio">
+                            <input type="radio" name="payment" id="payment-3" >
+                            <label for="payment-3">
+                                <span></span>
+                                Paypal System
+                            </label>
+
+
+
+                        </div>*@
+                </div>
+                <div class="input-checkbox">
+                    <input type="checkbox" id="terms">
+                    <label for="terms">
+                        <span></span>
+                        I've read and accept the <a href="#">terms & conditions</a>
+                    </label>
+                </div>
+                <a href="@Url.Action("index","success")" class="primary-btn order-submit">Submit Order</a>
+            </div>
+            <!-- /Order Details -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- NEWSLETTER -->
+<div id="newsletter" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="newsletter">
+                    <p>Sign Up for the <strong>NEWSLETTER</strong></p>
+                    <form>
+                        <input class="input" type="email" placeholder="Enter Your Email">
+                        <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+                    </form>
+                    <ul class="newsletter-follow">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /NEWSLETTER -->
